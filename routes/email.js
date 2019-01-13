@@ -45,6 +45,23 @@ router.get('/send', function(req, res) {
 
     readHTMLFile(__dirname + '/' + '../views/email.ejs', function(err, html) {
         var template = html;
+        //console.log('type of' + typeof(template));
+
+        var placeholders = { '##name##': 'abhishek pandey', '##myname##': 'insindia123@gmail.com' };
+
+        console.log('here is length' + placeholders.length);
+
+        for (key in placeholders) {
+            console.log('here is place' + key);
+            template = template.replace(key, placeholders[key]);
+        }
+        console.log('my data' + template);
+
+
+
+        // var data = template.replace('##name##', 'abhishek pandey');
+        //console.log('012' + data);
+
 
         var mailOptions = {
             from: 'insindia123@gmial.com',
@@ -54,9 +71,8 @@ router.get('/send', function(req, res) {
             html: template
         }
 
-        console.log(JSON.stringify(mailOptions));
+        //console.log(JSON.stringify(mailOptions));
         smtpTransport.sendMail(mailOptions, function(error, response) {
-            console.log('01', error, response);
             if (error) {
                 console.log(error);
                 res.end("error");

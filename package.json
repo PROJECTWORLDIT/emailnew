@@ -15,5 +15,8 @@
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
     "nodemailer": "^5.1.1"
+  },
+  "devDependencies": {
+    "json-template-replace": "^0.1.1"
   }
 }
